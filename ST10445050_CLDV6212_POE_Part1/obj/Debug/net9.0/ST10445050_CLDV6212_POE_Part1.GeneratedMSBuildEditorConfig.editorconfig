@@ -1,0 +1,153 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ST10445050_CLDV6212_POE_Part1
+build_property.RootNamespace = ST10445050_CLDV6212_POE_Part1
+build_property.ProjectDir = C:\Users\keona\OneDrive\Documents\GitHub\cldv6212-poe-ST10445050\CLDV6212_POE PART3\cldv6212-part-1-ST10445050-master\ST10445050_CLDV6212_POE_Part1\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\keona\OneDrive\Documents\GitHub\cldv6212-poe-ST10445050\CLDV6212_POE PART3\cldv6212-part-1-ST10445050-master\ST10445050_CLDV6212_POE_Part1
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/CustomerRole/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJSb2xlXENhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/CustomerRole/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJSb2xlXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/CustomerRole/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJSb2xlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/CustomerRole/Products.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJSb2xlXFByb2R1Y3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/CustomerRole/Receipt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJSb2xlXFJlY2VpcHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Customers/AddCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXEFkZEN1c3RvbWVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Customers/DeleteCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXERlbGV0ZUN1c3RvbWVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Customers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Customers/EditCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXEVkaXRDdXN0b21lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Customers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/FileModels/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsZU1vZGVsc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/FileModels/UploadFile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsZU1vZGVsc1xVcGxvYWRGaWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Login/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Orders/AddOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEFkZE9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Orders/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Orders/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Orders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Products/AddProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQWRkUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Products/DeleteProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Products/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Products/EditProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdFByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Shared/CustomerRoleLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEN1c3RvbWVyUm9sZUxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Shared/_LoginLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/keona/OneDrive/Documents/GitHub/cldv6212-poe-ST10445050/CLDV6212_POE PART3/cldv6212-part-1-ST10445050-master/ST10445050_CLDV6212_POE_Part1/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-c6bl7m4cvl

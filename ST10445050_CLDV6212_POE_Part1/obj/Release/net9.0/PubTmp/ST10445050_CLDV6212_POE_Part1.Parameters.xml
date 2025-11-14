@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="ABCRetailsApp" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\keona\\OneDrive\\Documents\\Visual\ Studio\ 2022\\CLDV6212_Final_Project\\cldv6212-part-1-ST10445050-master\\ST10445050_CLDV6212_POE_Part1\\obj\\Release\\net9\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

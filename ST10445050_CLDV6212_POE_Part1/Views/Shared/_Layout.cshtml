@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - ABC Retail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1; 
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            margin: 0;
+            padding: 10px 0;
+            background-color: #CD5656;
+            border-radius: 0;
+        }
+
+            .navbar .container-fluid {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .navbar .nav-btn {
+                color: #CD5656;
+                background-color: white;
+                font-weight: bold;
+                margin-left: 10px;
+                padding: 10px 30px;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+            }
+
+                .navbar .nav-btn:hover {
+                    background-color: #AF3E3E;
+                    color: white;
+                    transform: scale(1.05);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                }
+
+        /* Footer */
+        .footer {
+            width: 100%;
+            padding: 20px 0;
+            background-color: #CD5656;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-top: 3px solid #AF3E3E;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color:#EAEBD0; font-weight:bold;">ABC Retail</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-btn" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-btn" asp-controller="Customers" asp-action="Index">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-btn" asp-controller="Products" asp-action="Index">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-btn" asp-controller="Orders" asp-action="Index">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-btn" asp-controller="FileModels" asp-action="Index">Files</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Logout button -->
+                        <a class="nav-link nav-btn" asp-controller="Login" asp-action="Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content -->
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 ABC Retail. All rights reserved.</p>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿@model List<ST10445050_CLDV6212_POE_Part1.Models.CartViewModel>
+
+@{
+    ViewData["Title"] = "My Cart";
+    Layout = "~/Views/Shared/CustomerRoleLayout.cshtml";
+}
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4" style="color:#CD5656; font-weight:700;">Shopping Cart</h2>
+
+    <!-- SUCCESS MESSAGE -->
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success text-center fade-out mb-4"
+             style="font-weight:bold; font-size:1.1rem; border-radius:10px;">
+            @TempData["Message"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <p class="text-center fw-bold" style="color:#AF3E3E; font-size:1.2rem;">Your cart is empty!</p>
+    }
+    else
+    {
+        <div class="table-responsive shadow-sm rounded-4">
+            <table class="table table-bordered cart-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Total</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td class="text-center">R @item.Price.ToString("0.00")</td>
+                            <td class="text-center">@item.Quantity</td>
+                            <td class="text-center">R @item.Total.ToString("0.00")</td>
+                            <td class="text-center">
+                                <a asp-action="RemoveFromCart"
+                                   asp-route-productId="@item.ProductID"
+                                   class="btn remove-btn rounded-pill px-3 py-1 text-white">
+                                    Remove
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end mt-4">
+            <h3 style="color:#CD5656; font-weight:700;">
+                Final Total: R @ViewBag.Subtotal.ToString("0.00")
+            </h3>
+        </div>
+
+        <div class="text-end mt-3">
+            <a asp-action="ProcessOrder"
+               class="btn checkout-btn rounded-pill px-5 py-2">
+                Place Order
+            </a>
+        </div>
+    }
+</div>
+
+
+<style>
+
+   
+    .fade-out {
+        animation: fadeOut 4s ease forwards;
+    }
+    @@keyframes fadeOut {
+        0%
+
+    {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+
+    }
+
+    
+    .cart-table {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+        .cart-table thead {
+            background-color: #CD5656;
+            color: white;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+        .cart-table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+            .cart-table tbody tr:hover {
+                background-color: #FFF1F1;
+            }
+
+    .remove-btn {
+        background-color: #CD5656;
+        border: none;
+        font-weight: 600;
+        transition: 0.3s ease;
+    }
+
+        .remove-btn:hover {
+            background-color: #AF3E3E;
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+    
+    .checkout-btn {
+        background-color: #CD5656;
+        border: none;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
+
+        .checkout-btn:hover {
+            background-color: #AF3E3E;
+            transform: scale(1.06);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            color: white;
+        }
+
+</style>
