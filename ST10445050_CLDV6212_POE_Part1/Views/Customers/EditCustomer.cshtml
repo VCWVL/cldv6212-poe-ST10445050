@@ -1,7 +1,7 @@
 ﻿@model ST10445050_CLDV6212_POE_Part1.Models.Customer
 @{
     ViewData["Title"] = "Edit Customer";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // use your shared layout
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
 <!-- Page Content -->
@@ -14,7 +14,7 @@
             <form asp-action="EditCustomer" method="post">
                 @Html.AntiForgeryToken()
 
-                <!-- Hidden fields for PartitionKey & RowKey -->
+                
                 <input type="hidden" asp-for="PartitionKey" />
                 <input type="hidden" asp-for="RowKey" />
 

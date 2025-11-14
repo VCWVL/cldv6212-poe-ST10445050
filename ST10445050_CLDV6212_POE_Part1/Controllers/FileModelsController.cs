@@ -1,35 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ST10445050_CLDV6212_POE_Part1.Models;
 using ST10445050_CLDV6212_POE_Part1.Services;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ST10445050_CLDV6212_POE_Part1.Controllers
 {
     public class FileModelsController : Controller
     {
-        // =========================
-        // Dependencies & Constants
-        // =========================
+        private readonly FileStorageService _fileStorageService;
+        private readonly HttpClient _httpClient;
 
-        private readonly UploadsService _uploadsService; // Handles file operations via Azure Function
-
-        // Directory name in Azure File Share
-        private const string DirectoryName = "uploads";
-
-        // Constructor: receive UploadsService via DI
-        public FileModelsController(UploadsService uploadsService)
+        // Constructor to inject the services
+        public FileModelsController(FileStorageService fileStorageService, HttpClient httpClient)
         {
-            _uploadsService = uploadsService;
+            _fileStorageService = fileStorageService;
+            _httpClient = httpClient;
         }
 
         // =========================
         // LIST FILES
         // =========================
-        // GET: /Files
         public async Task<IActionResult> Index()
         {
             try
             {
-                var files = await _uploadsService.GetFilesAsync();
+                var files = await _fileStorageService.ListFilesAsync("uploads");
                 return View(files);
             }
             catch (Exception ex)
@@ -42,7 +41,6 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
         // =========================
         // UPLOAD FILE
         // =========================
-        // POST: /Files/UploadFile
         [HttpPost]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
@@ -58,8 +56,30 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
 
             try
             {
-                string result = await _uploadsService.UploadFileAsync(file.FileName, fileBytes);
-                TempData["Message"] = result;
+                // First, upload the file to Azure File Storage
+                string uploadResult = await _fileStorageService.UploadFileAsync("uploads", file.FileName, fileBytes);
+
+                // Trigger the Azure Function to process the uploaded file
+                var fileUploadRequest = new
+                {
+                    FileName = file.FileName,
+                    FileContent = Convert.ToBase64String(fileBytes)
+                };
+
+                var content = new StringContent(JsonConvert.SerializeObject(fileUploadRequest), Encoding.UTF8, "application/json");
+
+                var functionUrl = "https://st10445050-abcretails.azurewebsites.net"; 
+
+                var response = await _httpClient.PostAsync(functionUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["Message"] = $"File '{file.FileName}' uploaded and processed successfully.";
+                }
+                else
+                {
+                    TempData["Message"] = $"Error triggering the Azure Function: {response.ReasonPhrase}";
+                }
             }
             catch (Exception ex)
             {
@@ -72,7 +92,6 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
         // =========================
         // DOWNLOAD FILE
         // =========================
-        // GET: /Files/DownloadFile?fileName=xyz
         public async Task<IActionResult> DownloadFile(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
@@ -80,31 +99,25 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
 
             try
             {
-                string connectionString = Environment.GetEnvironmentVariable("FileShareConnectionString") ?? "";
-                var shareClient = new Azure.Storage.Files.Shares.ShareClient(connectionString, DirectoryName);
-                var directoryClient = shareClient.GetDirectoryClient(DirectoryName);
-                var fileClient = directoryClient.GetFileClient(fileName);
+                var fileStream = await _fileStorageService.DownloadFileAsync("uploads", fileName);
+                if (fileStream != null)
+                {
+                    return File(fileStream, "application/octet-stream", fileName);
+                }
 
-                // Download the file
-                var downloadResponse = await fileClient.DownloadAsync();
-                var stream = new MemoryStream();
-                await downloadResponse.Value.Content.CopyToAsync(stream);
-                stream.Position = 0;
-
-                return File(stream, "application/octet-stream", fileName);
+                TempData["Message"] = $"File '{fileName}' not found.";
             }
             catch (Exception ex)
             {
                 TempData["Message"] = $"Error downloading file: {ex.Message}";
-                return RedirectToAction(nameof(Index));
             }
-        }
 
+            return RedirectToAction(nameof(Index));
+        }
 
         // =========================
         // DELETE FILE
         // =========================
-        // GET: /Files/DeleteFile?fileName=xyz
         public async Task<IActionResult> DeleteFile(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
@@ -115,16 +128,8 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
 
             try
             {
-                string connectionString = Environment.GetEnvironmentVariable("FileShareConnectionString") ?? "";
-                var shareClient = new Azure.Storage.Files.Shares.ShareClient(connectionString, DirectoryName);
-                var directoryClient = shareClient.GetDirectoryClient(DirectoryName);
-                var fileClient = directoryClient.GetFileClient(fileName);
-
-                bool deleted = await fileClient.DeleteIfExistsAsync();
-
-                TempData["Message"] = deleted
-                    ? $"File '{fileName}' deleted successfully!"
-                    : $"File '{fileName}' not found.";
+                bool result = await _fileStorageService.DeleteFileAsync("uploads", fileName);
+                TempData["Message"] = result ? $"File '{fileName}' deleted successfully!" : $"File '{fileName}' not found.";
             }
             catch (Exception ex)
             {

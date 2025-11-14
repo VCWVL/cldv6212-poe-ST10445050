@@ -2,11 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using ST10445050_CLDV6212_POE_Part1.Services;
-
-// ST10445050 
-// KEONA MACKAN
-// CLDV6212 POE PART 2
+using ST10445050_CLDV6212_POE_Part1.DbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,11 +27,8 @@ builder.Services.AddSingleton<TableService>(sp =>
 });
 
 // ✅ Register CustomerService & ProductService
-builder.Services.AddHttpClient<CustomerService>();
-builder.Services.AddScoped<CustomerService>();
-
-builder.Services.AddHttpClient<ProductService>();
-builder.Services.AddScoped<ProductService>();
+builder.Services.AddHttpClient<CustomerService>(); // Registers HttpClient for CustomerService
+builder.Services.AddScoped<CustomerService>(); // Add CustomerService as a scoped service
 
 // ============================
 // Register OrderService & QueueService
@@ -56,6 +51,31 @@ builder.Services.AddSingleton<FileStorageService>(sp =>
 });
 
 // ============================
+// Register Database context (SQL Database) for User login
+// ============================
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(configuration.GetConnectionString("AzureSQL")));
+
+// ============================
+// Register Session services (for login management)
+// ============================
+builder.Services.AddDistributedMemoryCache();  // Required for session
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// ============================
+// Register identity-related services
+// ============================
+builder.Services.AddAuthentication()
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";  // Redirect here when not authenticated
+    });
+
+// ============================
 // Build the app
 // ============================
 var app = builder.Build();
@@ -74,6 +94,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Use session for storing user info
+app.UseSession();
+
+// Use Authentication and Authorization middleware
+app.UseAuthentication();
 app.UseAuthorization();
 
 // Default MVC route
@@ -84,8 +109,9 @@ app.MapControllerRoute(
 // Seed initial data
 using (var scope = app.Services.CreateScope())
 {
-    var tableService = scope.ServiceProvider.GetRequiredService<TableService>();
-    await tableService.SeedInitialDataAsync();
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await context.Database.MigrateAsync();  // Ensure the database is up-to-date
 }
 
+// Run the application
 app.Run();

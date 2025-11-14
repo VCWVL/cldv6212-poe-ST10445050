@@ -18,7 +18,7 @@
         }
 
         main {
-            flex: 1; /* take all available space between navbar and footer */
+            flex: 1; 
         }
 
         /* Navbar */
@@ -90,6 +90,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-btn" asp-controller="FileModels" asp-action="Index">Files</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Logout button -->
+                        <a class="nav-link nav-btn" asp-controller="Login" asp-action="Logout">Logout</a>
                     </li>
                 </ul>
             </div>

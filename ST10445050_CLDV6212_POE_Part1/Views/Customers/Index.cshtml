@@ -2,15 +2,15 @@
 
 @{
     ViewData["Title"] = "Customers";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // Use shared layout with navbar & footer
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- Customers Section -->
 <div class="customers-section">
     <h2 class="customers-title">Customers</h2>
 
     <p>
-        <a asp-action="AddCustomer" class="btn btn-add">+ Add New Customer</a>
+        <a asp-action="AddCustomer" class="btn-add">+ Add New Customer</a>
+
     </p>
 
     <div class="table-responsive">
@@ -46,9 +46,7 @@
     </div>
 </div>
 
-<!-- Page-specific CSS -->
 <style>
-    /* Customers Section */
     .customers-section {
         background: #EAEBD0;
         padding: 40px 20px;
@@ -65,24 +63,6 @@
         font-weight: bold;
     }
 
-    /* Buttons */
-    .btn-add {
-        background-color: #CD5656;
-        color: white;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 30px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-        .btn-add:hover {
-            background-color: #AF3E3E;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-    /* Table */
     .table-custom {
         width: 100%;
         border-collapse: collapse;
@@ -112,7 +92,6 @@
             transition: background 0.3s ease;
         }
 
-    /* Action Buttons */
     .btn-action {
         padding: 6px 14px;
         border-radius: 20px;
@@ -128,25 +107,30 @@
         color: white;
     }
 
-        .btn-details:hover {
-            background-color: #565e64;
+    .btn-add {
+        background-color: #CD5656; 
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 30px; 
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .btn-add:hover {
+            background-color: #AF3E3E;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
+
 
     .btn-edit {
         background-color: #f0ad4e;
         color: white;
     }
 
-        .btn-edit:hover {
-            background-color: #ec971f;
-        }
-
     .btn-delete {
         background-color: #d9534f;
         color: white;
     }
-
-        .btn-delete:hover {
-            background-color: #c9302c;
-        }
 </style>

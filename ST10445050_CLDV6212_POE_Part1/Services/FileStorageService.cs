@@ -2,7 +2,9 @@
 using Azure.Storage.Files.Shares;
 using Azure.Storage.Files.Shares.Models;
 using ST10445050_CLDV6212_POE_Part1.Models;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ST10445050_CLDV6212_POE_Part1.Services
 {
@@ -21,10 +23,10 @@ namespace ST10445050_CLDV6212_POE_Part1.Services
         }
 
         // ================= Upload File =================
-        public async Task UploadFileAsync(string directoryName, string fileName, Stream fileStream)
+        public async Task<string> UploadFileAsync(string directoryName, string fileName, byte[] fileContent)
         {
-            if (fileStream == null || fileStream.Length == 0)
-                throw new ArgumentException("File stream is empty", nameof(fileStream));
+            if (fileContent == null || fileContent.Length == 0)
+                throw new ArgumentException("File content is empty", nameof(fileContent));
 
             try
             {
@@ -39,15 +41,20 @@ namespace ST10445050_CLDV6212_POE_Part1.Services
                 await directoryClient.CreateIfNotExistsAsync();
 
                 var fileClient = directoryClient.GetFileClient(fileName);
-                await fileClient.CreateAsync(fileStream.Length);
 
-                fileStream.Position = 0;
-                await fileClient.UploadRangeAsync(new HttpRange(0, fileStream.Length), fileStream);
+                // Create the file and upload content
+                await fileClient.CreateAsync(fileContent.Length);
+                using (var stream = new MemoryStream(fileContent))
+                {
+                    await fileClient.UploadRangeAsync(new HttpRange(0, fileContent.Length), stream);
+                }
+
+                return $"File '{fileName}' uploaded successfully.";
             }
             catch (RequestFailedException ex)
             {
-                // You can log ex.Message for debugging
-                throw new InvalidOperationException($"Error uploading file '{fileName}': {ex.Message}", ex);
+                // Log and handle exception
+                return $"Error uploading file: {ex.Message}";
             }
         }
 

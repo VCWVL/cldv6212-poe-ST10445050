@@ -2,30 +2,20 @@
 using Azure.Data.Tables;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ST10445050_CLDV6212_POE_Part1.Models
 {
     public class Product : ITableEntity
     {
-        // =========================
-        // Azure Table Storage Keys
-        // =========================
         public string PartitionKey { get; set; } = "ProductsPartition";
         public string RowKey { get; set; } = Guid.NewGuid().ToString();
-
-        // ProductID should not be bound by forms
-        [BindNever]
         public string ProductID { get; set; } = string.Empty;
-
-        // =========================
-        // Product Details
-        // =========================
 
         [Required(ErrorMessage = "Product name is required.")]
         [StringLength(100, ErrorMessage = "Product name cannot exceed 100 characters.")]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
-        // Description is now optional
         [StringLength(500, ErrorMessage = "Product description cannot exceed 500 characters.")]
         public string? Description { get; set; }
 
@@ -37,14 +27,18 @@ namespace ST10445050_CLDV6212_POE_Part1.Models
         [Range(0, int.MaxValue, ErrorMessage = "Quantity must be a non-negative number.")]
         public int Quantity { get; set; }
 
-        // Image URL is optional
-        [Url(ErrorMessage = "Invalid URL format.")]
         public string? ImageUrl { get; set; }
 
-        // =========================
-        // Azure Table Metadata
-        // =========================
+        // For file uploads
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
+
+        // For base64 encoded image
+        [NotMapped]
+        public string? ImageBase64 { get; set; }
+
+        //  ITableEntity members
         public DateTimeOffset? Timestamp { get; set; }
-        public ETag ETag { get; set; }
+        [NotMapped]  public ETag ETag { get; set; }
     }
 }

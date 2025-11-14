@@ -12,7 +12,7 @@
 
     var customerSelectList = new SelectList(customers, "CustomerID", "FirstName", Model?.customerID ?? 0);
     var statusSelectList = new SelectList(statusOptions, Model?.orderStatus ?? "Pending");
-    }
+}
 
 <div class="container mt-4">
     <div class="card shadow-lg rounded-3">
@@ -48,28 +48,12 @@
                             @foreach (var p in products)
                             {
                                 <option value="@p.ProductID"
-                                        data-price="@p.Price.ToString("0.00", CultureInfo.InvariantCulture)"
-                                        data-stock="@p.Quantity">
+                                        data-price="@p.Price.ToString("0.00", CultureInfo.InvariantCulture)">
                                     @p.Name
                                 </option>
                             }
                         </select>
                         <span asp-validation-for="productID" class="text-danger"></span>
-                    </div>
-
-                    <!-- Delivery Date -->
-                    <div class="mb-3">
-                        <label asp-for="deliveryDate" class="form-label">Delivery Date</label>
-                        <input asp-for="deliveryDate" class="form-control" type="datetime-local"
-                               value="@Model?.deliveryDate.ToString("yyyy-MM-ddTHH:mm")" />
-                        <span asp-validation-for="deliveryDate" class="text-danger"></span>
-                    </div>
-
-                    <!-- Delivery Address -->
-                    <div class="mb-3">
-                        <label asp-for="deliveryAddress" class="form-label">Delivery Address</label>
-                        <input asp-for="deliveryAddress" class="form-control" />
-                        <span asp-validation-for="deliveryAddress" class="text-danger"></span>
                     </div>
 
                     <!-- Status Dropdown -->
@@ -78,8 +62,6 @@
                         <select asp-for="orderStatus" class="form-control" asp-items="statusSelectList"></select>
                         <span asp-validation-for="orderStatus" class="text-danger"></span>
                     </div>
-
-
 
                     <!-- Quantity -->
                     <div class="mb-3">

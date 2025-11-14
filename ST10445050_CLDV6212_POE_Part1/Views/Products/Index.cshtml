@@ -1,52 +1,63 @@
-﻿@model IEnumerable<ST10445050_CLDV6212_POE_Part1.Models.Order>
+﻿@model IEnumerable<ST10445050_CLDV6212_POE_Part1.Models.Product>
 
 @{
-    ViewData["Title"] = "All Orders";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
-<div class="orders-section">
-    <h2 class="orders-title">All Orders</h2>
+<!-- Products Section -->
+<div class="products-section">
+    <h2 class="products-title">Products</h2>
 
     <p>
-        <a asp-action="AddOrder" class="btn-add">+ Place New Order</a>
+        <a asp-action="AddProduct" class="btn btn-add">+ Add New Product</a>
     </p>
-
-    <form method="get" class="mb-3">
-        <input type="text" name="searchString" placeholder="Search by Customer ID or Product Name" class="form-control" value="@Context.Request.Query["searchString"]" />
-        <button type="submit" class="btn-search mt-2">Search</button>
-
-    </form>
 
     <div class="table-responsive">
         <table class="table-custom">
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Customer ID</th>
-                    <th>Product ID</th>
-                    <th>Delivery Date</th>
-                    <th>Delivery Address</th>
-                    <th>Order Total</th>
-                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Product Stock Availability</th>
+                    <th>Price</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var order in Model)
+                @foreach (var product in Model)
                 {
                     <tr>
-                        <td>@order.orderID</td>
-                        <td>@order.customerID</td>
-                        <td>@order.productID</td>
-                        <td>@order.deliveryDate.ToString("yyyy-MM-dd HH:mm")</td>
-                        <td>@order.deliveryAddress</td>
-                        <td>@($"R{order.orderTotal:N2}")</td>
-                        <td>@order.orderStatus</td> <!-- status as plain text -->
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.Quantity</td>
+                        <td>@product.Price.ToString("C")</td>
                         <td>
-                            <a asp-action="Details" asp-route-partitionKey="@order.PartitionKey" asp-route-rowKey="@order.RowKey" class="btn-action btn-details">Details</a>
-                            <a asp-action="Delete" asp-route-partitionKey="@order.PartitionKey" asp-route-rowKey="@order.RowKey" class="btn-action btn-delete">Delete</a>
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@product.ImageUrl" alt="@product.Name" style="height:60px;" />
+                            }
                         </td>
+                        <td>
+                            <div class="action-buttons-container">
+                                <a asp-action="Details"
+                                   asp-route-partitionKey="@product.PartitionKey"
+                                   asp-route-rowKey="@product.RowKey"
+                                   class="btn-action btn-details">Details</a>
+
+                                <a asp-action="EditProduct"
+                                   asp-route-partitionKey="@product.PartitionKey"
+                                   asp-route-rowKey="@product.RowKey"
+                                   class="btn-action btn-edit">Edit</a>
+
+                                <a asp-action="DeleteProduct"
+                                   asp-route-partitionKey="@product.PartitionKey"
+                                   asp-route-rowKey="@product.RowKey"
+                                   class="btn-action btn-delete">Delete</a>
+                            </div>
+                        </td>
+
                     </tr>
                 }
             </tbody>
@@ -54,10 +65,8 @@
     </div>
 </div>
 
-
 <style>
-    /* Orders Section */
-    .orders-section {
+    .products-section {
         background: #EAEBD0;
         padding: 40px 20px;
         border-radius: 15px;
@@ -67,13 +76,12 @@
         text-align: center;
     }
 
-    .orders-title {
+    .products-title {
         color: #AF3E3E;
         margin-bottom: 20px;
         font-weight: bold;
     }
 
-    /* Buttons */
     .btn-add {
         background-color: #CD5656;
         color: white;
@@ -90,7 +98,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-    /* Table */
     .table-custom {
         width: 100%;
         border-collapse: collapse;
@@ -120,16 +127,25 @@
             transition: background 0.3s ease;
         }
 
-    /* Action Buttons */
-    .btn-action {
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 0.9rem;
+    
+    td .btn-action {
+        padding: 10px 20px; 
+        border-radius: 24px;
+        font-size: 0.95rem;
         font-weight: bold;
-        margin: 0 3px;
+        margin: 10px 18px; 
+        display: inline-block;
         text-decoration: none;
         transition: all 0.3s ease;
     }
+
+    
+    .action-buttons-container {
+        display: flex;
+        justify-content: center; 
+        gap: 20px; 
+    }
+
 
     .btn-details {
         background-color: #6c757d;
@@ -140,6 +156,15 @@
             background-color: #565e64;
         }
 
+    .btn-edit {
+        background-color: #f0ad4e;
+        color: white;
+    }
+
+        .btn-edit:hover {
+            background-color: #ec971f;
+        }
+
     .btn-delete {
         background-color: #d9534f;
         color: white;
@@ -147,23 +172,5 @@
 
         .btn-delete:hover {
             background-color: #c9302c;
-        }
-
-    /* Search Button */
-    .btn-search {
-        background-color: #CD5656;
-        color: white;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 30px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-        .btn-search:hover {
-            background-color: #AF3E3E;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 </style>

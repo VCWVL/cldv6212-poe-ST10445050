@@ -9,27 +9,37 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
         private readonly TableService _tableService;
         private readonly CustomerService _customerService;
 
-        public CustomersController(TableService tableService, CustomerService customerService )
+        // Constructor receives services for interacting with Azure Table Storage
+        public CustomersController(TableService tableService, CustomerService customerService)
         {
             _tableService = tableService;
             _customerService = customerService;
         }
 
-        // ======================
-        // LIST ALL CUSTOMERS
-        // ======================
+        // ============================================
+        // DISPLAY ALL CUSTOMERS
+        // Loads customer list from Azure Table Storage
+        // ============================================
         public async Task<IActionResult> Index()
         {
-            var customers = await _tableService.GetAllCustomersAsync();
+            var customers = await _customerService.GetAllCustomersAsync();
             return View(customers);
         }
 
+        // ============================================
+        // ADD CUSTOMER (GET)
+        // Shows the form where admin can create a new customer
+        // ============================================
         [HttpGet]
         public IActionResult AddCustomer()
         {
             return View();
         }
 
+        // ============================================
+        // ADD CUSTOMER (POST)
+        // Saves the new customer to Azure Table Storage
+        // ============================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddCustomer(Customer customer)
@@ -39,6 +49,7 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
 
             var result = await _customerService.AddCustomerAsync(customer);
 
+            // Handles service error messages
             if (result.StartsWith("Error") || result.StartsWith("Exception"))
             {
                 ModelState.AddModelError("", result);
@@ -49,13 +60,11 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
             return RedirectToAction("Index");
         }
 
-       
-    
-
-// ======================
-// EDIT (GET)
-// ======================
-[HttpGet]
+        // ============================================
+        // EDIT CUSTOMER (GET)
+        // Retrieves the customer to display on the edit form
+        // ============================================
+        [HttpGet]
         public async Task<IActionResult> EditCustomer(string partitionKey, string rowKey)
         {
             if (string.IsNullOrEmpty(partitionKey) || string.IsNullOrEmpty(rowKey))
@@ -68,9 +77,10 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
             return View(customer);
         }
 
-        // ======================
-        // EDIT (POST)
-        // ======================
+        // ============================================
+        // EDIT CUSTOMER (POST)
+        // Saves updated customer details
+        // ============================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCustomer(Customer customer)
@@ -90,7 +100,10 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
             }
         }
 
-        // DELETE (GET)
+        // ============================================
+        // DELETE CUSTOMER (GET)
+        // Shows confirmation page before deleting
+        // ============================================
         [HttpGet]
         public async Task<IActionResult> DeleteCustomer(string partitionKey, string rowKey)
         {
@@ -104,7 +117,10 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
             return View(customer);
         }
 
-        // DELETE (POST)
+        // ============================================
+        // DELETE CUSTOMER (POST)
+        // Deletes the customer from Azure Table Storage
+        // ============================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string partitionKey, string rowKey)
@@ -113,10 +129,10 @@ namespace ST10445050_CLDV6212_POE_Part1.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-        // ======================
-        // DETAILS
-        // ======================
+        // ============================================
+        // CUSTOMER DETAILS
+        // Displays full information of a single customer
+        // ============================================
         [HttpGet]
         public async Task<IActionResult> Details(string partitionKey, string rowKey)
         {

@@ -1,0 +1,39 @@
+﻿@model ST10445050_CLDV6212_POE_Part1.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+    Layout = "~/Views/Shared/CustomerRoleLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Name" />
+        </div>
+        <div class="col-md-6">
+            <h2 style="color:#CD5656;">@Model.Name</h2>
+            <p class="fw-bold" style="color:#AF3E3E;">Price: R @Model.Price.ToString("0.00")</p>
+            <p>@Model.Description</p>
+
+            
+            <a asp-action="Products" asp-controller="CustomerRole" class="btn btn-lg btn-secondary mt-3">← Back to Products</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-secondary {
+        background-color: #CD5656;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 10px 30px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            background-color: #AF3E3E;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+</style>

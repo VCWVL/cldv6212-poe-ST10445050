@@ -1,5 +1,6 @@
 ﻿using Azure;
 using Azure.Data.Tables;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ST10445050_CLDV6212_POE_Part1.Models
 {
@@ -16,6 +17,7 @@ namespace ST10445050_CLDV6212_POE_Part1.Models
         public string PartitionKey { get; set; } = "CustomersPartition";
         public string RowKey { get; set; } = Guid.NewGuid().ToString();
         public DateTimeOffset? Timestamp { get; set; }
+        [NotMapped]
         public ETag ETag { get; set; }
     }
 }
